@@ -5,53 +5,54 @@
 using namespace std;
 
 int isHamiltonianPath(int ** inputArray, int vert, int edge){
-    int* array = new int[vert];
-    int prevVert=0;
+    int* NextVert = new int[vert];
     stack<int> s;
 
-    int i=0;
-    int j=0;
-	int k;
-    int start=0;
-    i = start;
-    memset( array, 0, sizeof(int)*vert);
+    int start=0, curVert=0, prevVert=-1;
+	int v;
+
+    curVert = start;
+    memset( NextVert, -1, sizeof(int)*vert);
 	
-    while (i<vert){
-        if ( j >= vert ){
-            if (s.empty()) { 
-                start = start+1;
-                i = start;
-                if (start >= vert ) return 0;
-                j=0;
-            } else {
-                i = s.top();
-                s.pop();
-                j = array[i]+1;
-				array[i] = 0;
+    while (start < vert) {
+
+        if (s.size() == vert) return 1;
+
+        if (NextVert[curVert] == -1) {
+
+            v = prevVert + 1;
+            while (v < vert) {
+                if (inputArray[curVert][v] == 1) break;
+                v++;
             }
-            continue;
+
+            if (v < vert) {
+                s.push(curVert);
+                NextVert[curVert] = v;
+                curVert = v;
+                prevVert = NextVert[curVert];
+                continue;
+            }
         }
-		
-        if ( array[i] == 0 ){
-            if ( inputArray[i][j]==1 ){
-                array[i] = j;
-                s.push(i);
-                i = j;
-                j=0;
-            } else {
-                j++;
-            }
-        }else{
-            if (s.size()==vert) return 1;
-            
-            i = s.top();
+
+        if (s.empty() != true) {
+            curVert = s.top();
             s.pop();
-            j = array[i]+1;
-			array[i] = 0;
+            prevVert = NextVert[curVert];
+            NextVert[curVert] = -1;
+        }
+        else {
+            start++;
+            curVert = start;
+            prevVert = -1;
+            memset(NextVert, -1, sizeof(int) * vert);
         }
     }
+
+    return 0;
 }
 
+#if 0
 int main() {
 	int cntProg;
 	int nVert, nEdge;
@@ -82,4 +83,5 @@ int main() {
     
 	return 0;
 }
+#endif
 
