@@ -4,8 +4,11 @@
 #include <vector>
 #include <csignal> 
 
+
 using namespace std;
 void dijkstra(vector<vector<int>>, int, int);
+
+#if 0
 int main()
 {
     int t;
@@ -37,6 +40,7 @@ int main()
     }
     return 0;
 }
+#endif
 
 /*This is a function problem.You only need to complete the function given below*/
 /*  Function to implement Dijkstra
