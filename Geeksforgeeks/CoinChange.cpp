@@ -1,5 +1,6 @@
 #include <iostream>
 using namespace std;
+#define run 0
 
 int coinChange() {
     int coinCount = 0;
@@ -43,6 +44,7 @@ int coinChange() {
     return ret;
 }
 
+#if (run==1)
 int main() {
     int IssueCnt = 0;
 
@@ -56,3 +58,4 @@ int main() {
 
     return 0;
 }
+#endif
