@@ -40,6 +40,7 @@ public:
     }
 };
 
+#if 0
 int main() {
     string com;
     int value = 0, cmdCount = 0;
@@ -75,3 +76,4 @@ int main() {
     }
     return 0;
 }
+#endif
