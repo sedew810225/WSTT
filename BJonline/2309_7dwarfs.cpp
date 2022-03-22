@@ -20,6 +20,7 @@ int find100sum(vector<int> dwarfHeight, int num){
 		return 0;
 	}
 	
+	//앞쪽 배열을 선택하고 나서 그다음엔 선택하지 않음 
 	for (int i=num;i<dwarfHeight.size();i++){
 		
 		target.push_back(dwarfHeight[i]);
