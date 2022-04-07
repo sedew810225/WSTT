@@ -19,7 +19,7 @@ int main ()
 		prev = 0;
 		prevIsCons = false;
 		isCons = true;
-		rule1 = false;
+		rule1 = false;				// use correct initialization or find another simple way
 		rule2 = rule3 = true;	
 		checkRule2=1;
 		
@@ -29,7 +29,7 @@ int main ()
 		for (auto a : str){
 			if (a == 'a' || a == 'e' || a == 'i' || a=='o' || a=='u'){
 				isCons = false;
-				rule1=true;	
+				rule1=true;		// check more clear requirment and rule
 			} else{
 				isCons = true;
 			}
