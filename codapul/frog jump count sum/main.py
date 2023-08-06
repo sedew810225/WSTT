@@ -16,7 +16,8 @@ def solution(N, stones, K):
         dt[idx_stone] = 1
         idx_last = idx_stone
 
-    # compare all K previous jump result add 1
+    # If frog can arrive current stone
+    # compare all previous jumps result + 1 to current stone
     # and find minimum value
     for idx in range(1, idx_last+1):
         if dt[idx] == 1:
@@ -24,7 +25,7 @@ def solution(N, stones, K):
                 if idx-backStep >= 0 and dt[idx-backStep] == 1:
                     if dp[idx] == -1 :
                         dp[idx] = dp[idx - backStep] + 1
-                    if dp[idx - backStep]+1 < dp[idx] :
+                    elif dp[idx - backStep]+1 < dp[idx] :
                         dp[idx] = dp[idx - backStep] + 1
 
     return dp[idx_last]
@@ -37,20 +38,25 @@ def greedy_solution(N, stones, K) :
 
     stonelist = [-1 for _ in range(1000001)]
 
+    # get stone's position
     for stone in stones.split(' '):
         stonelist[idx_last] = int(stone)
         idx_last += 1
 
-
     for idx in range(0, idx_last+1) :
+        # calculate the gab from previous stone
         if idx>0 :
             gap = stonelist[idx] - stonelist[idx-1]
         else :
             gap = stonelist[idx]
 
+        # Error case handling
         if gap>K :
             return -1
 
+        # Frog will jump to longest length always.
+        # If current stone cannot be reached,
+        # frog will try another jump from previous stone
         if (gap+previousJumpLength > K) :
             jumpcnt += 1
             previousJumpLength = gap
