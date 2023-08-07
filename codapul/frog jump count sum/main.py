@@ -64,3 +64,31 @@ def greedy_solution(N, stones, K) :
             previousJumpLength += gap
 
     return jumpcnt
+
+def solution_allJumpCombination(N, stones, K):
+    dt = [0 for _ in range(1000001)]
+    dp = [0 for _ in range(1000001)]
+    idx_last = 0
+
+    #In this case, frog start from number 1 stone
+    dt[0] = 0
+    dp[0] = 0
+    dt[1] = 1
+    dp[1] = 1
+
+    # update stone status from input string
+    for stone in stones.split(' '):
+        idx_stone = int(stone)
+        dt[idx_stone] = 1
+        idx_last = idx_stone
+
+    for idx in range(2, idx_last+1):
+        if dt[idx] == 1 :
+            for backStep in range(1, K+1) :
+                if idx-backStep >= 1 and dt[idx-backStep] == 1 :
+                    if dp[idx] == -1 :
+                        dp[idx] = dp[idx - backStep]
+                    else :
+                        dp[idx] += dp[idx - backStep]
+
+    return dp[idx_last]
