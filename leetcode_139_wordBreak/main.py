@@ -50,3 +50,29 @@ class Solution:
         #print (ret)
         return ret
 
+class Solution2:
+    def wordBreak(self, s: str, wordDict: List[str]) -> bool:
+
+        # Dp = True if some segment is one or more dictionary words
+        dp = [0 for _ in range(len(s)+1)]
+        dp[0] = 1
+
+        # There will be previous true segments in dp
+        # If the next char of those segment are in the dictionary, previous segment + len(new word) is True
+            # It can have multiple match with starting the char
+        # If dp[len(str)] is true, that means done
+
+        for i in range (len(s)+1):
+            if dp[i] == 1 :
+                #find the next starting letter from dic
+                for word in wordDict :
+                 if word[0] == s[i] :
+                     if i+len(word) > len(s):
+                         continue
+
+                #if there is matched word, update dp
+                     if word == s[i:i+len(word)]:
+                         dp[i+len(word)] = 1
+
+            if dp[len(s)] == 1:
+                return True
