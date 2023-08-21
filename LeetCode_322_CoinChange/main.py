@@ -5,14 +5,10 @@ class Solution:
         dp = [10**4+1 for _ in range(amount+1)]
         dp[0] = 0
 
-        for coin in coins:
-            if coin <= amount:
-                dp[coin] = 1
-
         for k in range(1, amount+1):
             for coin in coins:
                 if k - coin >= 0:
-                    dp[k] = min(dp[k], dp[coin] + dp[k-coin])
+                    dp[k] = min(dp[k], 1 + dp[k-coin])
 
         if dp[amount] >= 10**4 + 1:
             dp[amount] = -1
