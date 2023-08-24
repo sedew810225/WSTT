@@ -1,2 +1,16 @@
 
 *.exe
+.DS_Store
+BJ_11726_2xnTile/.idea/.name
+BJ_11726_2xnTile/.idea/BJ_11726_2xnTilig.iml
+BJ_11726_2xnTile/.idea/inspectionProfiles/profiles_settings.xml
+BJ_11726_2xnTile/.idea/misc.xml
+BJ_11726_2xnTile/.idea/modules.xml
+BJ_11726_2xnTile/.idea/vcs.xml
+LeetCode_300_LongestIncreasingSubsequence/.idea/inspectionProfiles/profiles_settings.xml
+LeetCode_300_LongestIncreasingSubsequence/.idea/LeetCode_300_LongestIncreasingSubsequence.iml
+LeetCode_300_LongestIncreasingSubsequence/.idea/misc.xml
+LeetCode_300_LongestIncreasingSubsequence/.idea/modules.xml
+LeetCode_300_LongestIncreasingSubsequence/.idea/vcs.xml
+*.xml
+*.iml
