@@ -12,12 +12,11 @@ class Solution:
                 prev = candidates[j]
                 tempsum = sum - candidates[j]
                 tempresult = copy.deepcopy(result)
+                tempresult.append(candidates[j])
 
                 if tempsum == 0:
-                    tempresult.append(candidates[j])
                     output.append(tempresult)
                 elif tempsum > 0:
-                    tempresult.append(candidates[j])
                     self.checkSum(j+1, candidates, tempsum, tempresult, output)
                 else :
                     prev = 0
