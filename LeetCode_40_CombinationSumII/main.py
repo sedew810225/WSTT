@@ -3,33 +3,31 @@ from typing import List
 
 class Solution:
     def checkSum (self, i: int, candidates: List[int], sum: int, result: List[int], output: List[List[int]]):
-        sum -= candidates[i]
-        result.append(candidates[i])
 
-        if sum == 0 :
-            output.append(result)
-        elif sum > 0 :
-            prev = 0
-            for j in range (i+1, len(candidates)) :
-                if candidates[j] == prev :
-                    continue
+        prev = 0
+        for j in range (i, len(candidates)) :
+            if candidates[j] == prev :
+                continue
+            else :
+                prev = candidates[j]
+                tempsum = sum - candidates[j]
+                tempresult = copy.deepcopy(result)
+
+                if tempsum == 0:
+                    tempresult.append(candidates[j])
+                    output.append(tempresult)
+                elif tempsum > 0:
+                    tempresult.append(candidates[j])
+                    self.checkSum(j+1, candidates, tempsum, tempresult, output)
                 else :
-                    prev = candidates[j]
-                    tempresult = copy.deepcopy(result)
-                    self.checkSum(j, candidates, sum, tempresult, output)
+                    prev = 0
+                    break
 
     def combinationSum2(self, candidates: List[int], target: int) -> List[List[int]]:
         output = []
+        midresult = []
 
         candidates.sort()
-        prev = 0
-
-        for i in range(len(candidates)) :
-            midresult = []
-            if candidates[i] == prev :
-                continue
-            else :
-                prev = candidates[i]
-                self.checkSum (i, candidates, target, midresult, output)
+        self.checkSum (0, candidates, target, midresult, output)
 
         return output
